@@ -4,6 +4,8 @@ gem 'rails', '3.2.3'
 
 gem 'sqlite3'
 gem 'devise'
+gem 'paperclip'
+gem 'jquery-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -13,4 +15,7 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 end
 
-gem 'jquery-rails'
+group :test, :development do
+  gem "rspec-rails", "~> 2.6"
+  gem 'factory_girl'
+end
