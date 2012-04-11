@@ -1,6 +1,7 @@
 name "dev"
 description "Development workstation for muzzik.fm (vagrant)."
 run_list(
+  "recipe[apt]",
 	"recipe[zsh]",
 	"recipe[git]",
 	"recipe[sqlite]",
@@ -9,5 +10,9 @@ run_list(
 	"recipe[muzzikfm::vagrant]"
 	# "recipe[unicorn]"
 )
-# default_attributes()
+default_attributes({
+  "sites" => {
+    "muzzikfm" => "www-data"
+  }
+})
 # override_attributes()

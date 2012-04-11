@@ -3,28 +3,18 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:file_path) %></th>
-      <th><%= model_class.human_attribute_name(:cover_file_name) %></th>
-      <th><%= model_class.human_attribute_name(:cover_content_type) %></th>
-      <th><%= model_class.human_attribute_name(:cover_file_size) %></th>
-      <th><%= model_class.human_attribute_name(:cover_updated_at) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @songs.each do |song| %>
       <tr>
-        <td><%= link_to song.id, song_path(song) %></td>
+        <td><%= link_to image_tag(song.cover.url(:thumb)), song_path(song) %></td>
         <td><%= song.title %></td>
         <td><%= song.file_path %></td>
-        <td><%= song.cover_file_name %></td>
-        <td><%= song.cover_content_type %></td>
-        <td><%= song.cover_file_size %></td>
-        <td><%= song.cover_updated_at %></td>
-        <td><%=l song.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_song_path(song), :class => 'btn btn-mini' %>

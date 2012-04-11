@@ -5,7 +5,8 @@ Vagrant::Config.run do |config|
   config.vm.box = "base"
   config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
 
-  config.vm.forward_port 3000, 3000
+  # config.vm.forward_port 3000, 3000
+  config.vm.forward_port 80, 8080
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "chef/cookbooks"
