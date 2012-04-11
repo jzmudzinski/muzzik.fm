@@ -28,7 +28,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">MuzzikFm</a>
+          <a class="brand" href="/">MuzzikFm</a>
           <div class="container nav-collapse">
             <% if user_signed_in? %>
               <ul class="nav">
@@ -36,7 +36,7 @@
                 <li><%= link_to "Songs", songs_path  %></li>
               </ul>
               <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search">
+                <input type="text" class="search-query" data-provide="typeahead" placeholder="Search" data-source="<%= current_user.playlists.map(&:title) + current_user.songs.map(&:title) %>">
               </form>
             <% end %>
             <ul class="nav pull-right">
@@ -49,6 +49,22 @@
     </div>
 
     <div class="container">
+
+    <% if notice.present? %>
+      <div class="alert alert-info">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <h4 class="alert-heading">Info!</h4>
+        <p><%= notice %></p>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="alert alert-error">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <h4 class="alert-heading">Error!</h4>
+        <p><%= alert %></p>
+      </div>
+    <% end %>
+
       <div class="content">
         <div class="row">
            <div class="span9">
@@ -56,11 +72,16 @@
             </div>
             <div class="span3">
               <div class="well sidebar-nav">
-                <h3>Sidebar</h3>
+                <h3>Navigation</h3>
                 <ul class="nav nav-list">
-                  <li class="nav-header">Sidebar</li>
-                  <li><%= link_to "Playlists", playlists_path %></li>
-                  <li><%= link_to "Songs", songs_path  %></li>
+                  <li class="nav-header">Your music</li>
+                  <li><%= link_to "<i class=\"icon-list-alt\"></i>Playlists".html_safe, playlists_path %></li>
+                  <li><%= link_to "<i class=\"icon-music\"></i>Songs".html_safe, songs_path  %></li>
+                  <% if user_signed_in? %>
+                    <li class="nav-header">Add</li>
+                    <li><%= link_to "<i class=\"icon-list-alt\"></i>Playlist".html_safe, new_playlist_path %></li>
+                    <li><%= link_to "<i class=\"icon-music\"></i>Song".html_safe, new_song_path  %></li>
+                  <% end %>
                 </ul>
               </div><!--/.well -->
             </div><!--/span-->
