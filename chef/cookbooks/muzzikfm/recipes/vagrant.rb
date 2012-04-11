@@ -2,8 +2,9 @@ package "libsqlite3-dev"
 include_recipe "imagemagick::devel"
 
 rbenv_ruby "1.9.3-p0"
+
 execute "set_global_ruby" do
-  user "vagrant"
+  user "root"
   command "rbenv global 1.9.3-p0"
 end
 
